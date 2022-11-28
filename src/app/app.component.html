@@ -1,0 +1,55 @@
+<ion-app [class.dark-theme]="dark">
+  <ion-menu side="start" content-id="main">
+    <ion-content>
+      <ion-menu-toggle autoHide="false">
+        <div class="userAccess" *ngIf="iniLogin">
+          <img [src]="avatar" alt="" width="170em">
+          <p>{{nombreCompleto}}</p>
+          <p class="unidad">{{unidad}}</p>
+        </div>
+        <div [hidden]="tipoFuncionario ==='SUPERVISOR'">
+        <ion-item [class]="menuSelect=='principal'?'menuSelect':'menuDeselect'" routerLink="/" routerLinkActive="true"
+          routerDirection="root" detail="false">
+          <ion-icon slot="start" name="home-outline"></ion-icon>
+          <ion-label>Inicio</ion-label>
+        </ion-item>
+        <ion-item [class]="menuSelect=='servicios'?'menuSelect':'menuDeselect'" detail="false"
+          routerLink="/recursos-humanos" detail="false">
+          <ion-icon slot="start" name="people-outline"></ion-icon>
+          <ion-label>Recursos humanos</ion-label>
+        </ion-item>
+        <ion-item [class]="menuSelect=='reportes'?'menuSelect':'menuDeselect'" detail="false"
+          routerLink="/recaudaciones" detail="false">
+          <ion-icon slot="start" name="cash-outline"></ion-icon>
+          <ion-label>Recaudaciones</ion-label>
+        </ion-item>
+        <ion-item [class]="menuSelect=='reportes'?'menuSelect':'menuDeselect'" detail="false"
+          routerLink="/monitoreo" detail="false">
+          <ion-icon slot="start" name="laptop-outline"></ion-icon>
+          <ion-label>Monitoreo</ion-label>
+        </ion-item>
+        <ion-item [class]="menuSelect=='reportes'?'menuSelect':'menuDeselect'" detail="false"
+          routerLink="/atencion" detail="false">
+          <ion-icon slot="start" name="mic-outline"></ion-icon>
+          <ion-label>Atención</ion-label>
+        </ion-item>
+        <ion-item [class]="menuSelect=='reportes'?'menuSelect':'menuDeselect'" detail="false"
+          routerLink="/proyectos" detail="false">
+          <ion-icon slot="start" name="podium-outline"></ion-icon>
+          <ion-label>Proyectos</ion-label>
+        </ion-item>
+        <ion-item [class]="menuSelect=='reportes'?'menuSelect':'menuDeselect'" detail="false"
+          routerLink="/ventanilla-tramites" detail="false">
+          <ion-icon slot="start" name="layers-outline"></ion-icon>
+          <ion-label>Ventanilla de trámites</ion-label>
+        </ion-item>
+      </div>
+        <ion-item lines="none" class="menuDeselect" (click)="logout()" detail="false" *ngIf="iniLogin">
+          <ion-icon slot="start" name="log-out"></ion-icon>
+          <ion-label>Cerrar sesión</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>

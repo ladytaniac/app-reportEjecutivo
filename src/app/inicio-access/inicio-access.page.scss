@@ -1,0 +1,34 @@
+.titleContenedor {
+    text-align: center;
+    margin: 40px 10px;
+}
+.titleContenedor h1 {
+    font-size: 28px;
+}
+.titleContenedor img {
+    width: 230px;
+}
+.enlacesContendor {
+    margin: 10px 55px;
+}
+.enlacesContendor .notaContenedor p{
+    margin: 30px 20px 30px 20px;
+    color: white;
+    font-size: 13px;
+    text-align: center;
+}
+.footerConteiner {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    margin: 10px;
+}
+.footerConteiner img {
+    width: 200px;
+}
+ion-button {
+    text-transform: capitalize;
+}

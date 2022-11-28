@@ -1,0 +1,40 @@
+.goBack {
+  margin: 20px 10px;
+  color: white;
+  font-size: 24px;
+}
+
+.goBack ion-button {
+  color: white;
+}
+
+ion-card {
+  background-color: white;
+}
+
+.item-background-color {
+  --ion-item-background: #ffffff;
+}
+
+ion-button {
+  text-transform: capitalize;
+}
+
+.fondoContenedor .formulario {
+  width: 90%;
+}
+.fondoContenedor .itemContenedor ion-input{
+  background-color: white;
+  border-radius: 15px;
+}
+.fondoContenedor .itemContenedor .labelWhite {
+  color: white;
+  text-align: center;
+}
+.fondoContenedor .itemContenedor {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+.validez {
+  color: #de9ebb;
+}

@@ -1,0 +1,8 @@
+{
+  "name": "reservas",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

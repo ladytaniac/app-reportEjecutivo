@@ -1,0 +1,39 @@
+.contenedorBuscador {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #06775c;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #4fb9a829;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+ion-card-header {
+    background-color: #ae1857;
+    padding: 10px 15px;
+}
+ion-card-title {
+    color: white;
+    font-size: 16px;
+}
+ion-card-subtitle {
+    color: #f9b154;
+}
+ion-card-content {
+    padding: 10px 15px;
+    color: black;
+}
+ion-card-content ion-button {
+    height: 20px;
+}
+.error-label {
+    color: #df547c;
+    font-size: 12px;
+}
+.error-label p {
+    margin: 0px;
+    padding: 0px;
+}
+.txtMensaje {
+    color: #ae1857;
+}

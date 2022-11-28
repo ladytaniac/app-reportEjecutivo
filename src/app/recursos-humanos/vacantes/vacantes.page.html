@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar class="header-color">
+    <ion-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2" class="iconTitle">
+            <ion-menu-button>
+              <ion-icon name="reorder-three-outline"></ion-icon>
+            </ion-menu-button>
+          </ion-col>
+          <ion-col size="10">
+            <div class="ion-text-center">
+              <h2>Vacantes</h2>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="false" class="ion-no-padding fondoStrongWhite">
+  <div class="fondoContenedor">
+    <div class="btnAtras">
+      <ion-button fill="clear" (click)="goBack()" class="ion-no-padding" routerDirection='back'>
+        <ion-icon name="chevron-back-outline"></ion-icon> Atrás
+      </ion-button>
+    </div>
+    <div class="titulo">
+      <h3>ITEMS QUE NO REALIZARON EL COBRO MES ANTERIOR</h3>
+    </div>
+    <div class="contenedorBuscador">
+      <form [formGroup]="form">
+        <ion-row>
+          <ion-col size="3" class="ion-no-padding">
+            <ion-select [compareWith]="compareTipoItem" interface="popover" formControlName="tipo_busq" (ionChange)="changeTipoBusq()">
+              <ion-select-option *ngFor="let item of lstItem" [value]="item.valor">{{item.name}}
+              </ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col size="9" class="ion-no-padding">
+            <ion-searchbar formControlName="busqueda" class="ion-no-padding" placeholder="Buscar" (ionInput)="setFilteredLocations()">
+            </ion-searchbar>
+          </ion-col>
+        </ion-row>
+      </form>
+    </div>
+    <div *ngFor="let vacante of filterData">
+      <div class="cardVacante">
+        <ion-card class="ion-no-padding ion-no-margin">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="bookmark-outline"></ion-icon>
+              {{ vacante['oficina'] }}
+            </ion-card-title>
+            <ion-card-subtitle>
+              Cargo: {{ vacante['cargo'] }}
+            </ion-card-subtitle>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="5" class="ion-no-padding">
+                <p>Item: {{ vacante['item'] }}</p>
+              </ion-col>
+              <ion-col size="7" class="ion-no-padding">
+                <p>Haber basico: <ion-badge color="verdeclaro">{{ vacante['haber_basico'] }}</ion-badge></p>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+</ion-content>

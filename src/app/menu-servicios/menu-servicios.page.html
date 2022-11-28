@@ -1,0 +1,16 @@
+<app-cabecera></app-cabecera>
+<ion-content [fullscreen]="false" class="ion-no-padding fondoTertiary">
+  <app-titulo text="Nuestros Servicios" icon="grid"></app-titulo>
+  <ion-searchbar placeholder="Buscar" [(ngModel)]="textSearch" (ionInput)="buscarTexto($event)" [animated]="true"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let pagina of paginas" [routerLink]="pagina.ruta">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="pagina.img"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{pagina.nombre}}</h3>
+        <p>{{pagina.descripcion}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

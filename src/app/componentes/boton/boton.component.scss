@@ -1,0 +1,23 @@
+.contentBtn{
+    background-color: #00add8;
+    border-radius: 0.2em;
+    float: left;
+    img{
+        float: left;
+        width: 35px;
+    }
+    .texto{
+        float: left;
+        color: white;
+        margin: auto;
+        padding: 0.4em 0.6em;
+        font-size: 1.1rem;
+        font-family: 'poppins-SB';
+    }
+    .rotar{
+        transform: rotate(180deg);
+    }
+}
+.fondoCancel{
+    background-color: #706f6f;
+}

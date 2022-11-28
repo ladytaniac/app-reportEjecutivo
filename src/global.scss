@@ -1,0 +1,324 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import "~leaflet/dist/leaflet.css";
+@import "~leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
+@import "~ionic4-auto-complete/auto-complete";
+
+@import "variables.scss";
+
+@font-face {
+    font-family: 'arciform';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./assets/fonts/Arciform.otf');
+}
+$font-arciform:"arciform";
+
+@font-face {
+    font-family: 'poppins-R';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./assets/fonts/Poppins-Regular.otf');
+}
+$font-poppins-r:"poppins-R";
+
+@font-face {
+    font-family: 'poppins-M';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./assets/fonts/Poppins-Medium.otf');
+}
+$font-poppins-m:"poppins-M";
+
+@font-face {
+    font-family: 'poppins-SB';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./assets/fonts/Poppins-SemiBold.otf');
+}
+$font-poppins-sb:"poppins-SB";
+ion-title {
+    font-family: $font-poppins-r;
+}
+ion-item, ion-label, ion-input, ion-content, ion-card {
+    font-family: $font-poppins-r !important;
+}
+ion-button{
+    font-family: $font-poppins-m;
+}
+body{
+    background:  #F4F6F9;
+    --background:  #F4F6F9;
+}
+.validez{
+    color: var(--ion-color-danger);
+}
+.item.sc-ion-label-md-h, .item .sc-ion-label-md-h{
+    white-space: normal !important;
+}
+.sc-ion-label-md-h{
+    white-space: normal !important;
+}
+.fondoTertiary{
+    --background: var(--ion-color-tertiary);
+}
+.fondoDanger{
+    --background: var(--ion-color-danger);
+}
+.fondoWarning{
+    --background: var(--ion-color-warning);
+}
+.popover_setting .popover-content {
+    transform-origin: right top !important;
+    top: 5em !important;
+    left: 10em !important;
+    .avatarMenu{
+        --ion-background-color: var(--ion-color-primary);
+        --ion-text-color: #ffffff;
+    }
+}
+
+/* Nuevos Diseños principales */
+.fondoStrongPurple {
+    --ion-background-color: #008770;
+    --background: #008770;
+}
+.fondoStrongPurple h1 {
+    color: white;
+}
+.fondoStrongPurple .fondoContenedor {
+    background-image: url("./assets/imgs/principales/fondo-green.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 500px;
+    width: 100%;
+}
+.header-color{
+    --background: #06775c;
+    color: white;
+    border-radius: 0px 0px 10px 10px;
+}
+.hotfix.header-md::after {
+    background: none;
+}
+ion-header {
+    box-shadow: 0 8px 14px rgb(151 163 160) !important;
+    border-radius: 0px 0px 20px 10px;
+}
+ion-header::after {
+    background-image: none !important;
+}
+ion-title {
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+/* Fondo Acceso */
+.fondoStrongWhite {
+    --ion-background-color:  #F4F6F9;
+}
+.fondoContenedor {
+    background-image: url("./assets/imgs/principales/argollas.png");
+    background-color: #F4F6F9;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    background-size: cover;
+    height: auto;
+    width: 100%;
+    padding: 10px 15px;
+    min-height: calc(100vh - 113px);
+}
+.fondoContenedor .titulo {
+    margin-bottom: 15px;
+}
+.fondoContenedor .titulo h3{
+    background: none;
+    color: #06775c;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: -webkit-center;
+}
+.fondoContenedor .titulo h3::after {
+    background: #4fb9a8 none repeat scroll 0 0;
+    content: "";
+    display: block;
+    height: 3px;
+    margin-top: 3px;
+    max-width: 75px;
+    padding: 0;
+    border-radius: 3px;
+    width: 50%;
+}
+.fondoStrongWhite .ion-color-light {
+    --ion-color-base: #ffffff !important;
+}
+.fondoStrongWhite .titleContenedor {
+    background-color: #ad1e58;
+    color: white;
+    padding: 50px 5px 0px 5px;
+    border-radius: 0px 0px 8px 8px;
+}
+.fondoStrongWhite .titleContenedor ion-icon{
+    color: white;
+}
+
+.fondoStrongWhite .titleContenedor .iconTitle {
+    font-size: 35px;
+}
+.fondoStrongWhite .titleContenedor h2 {
+    margin-top: 0px;
+    font-size: 24px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.cardTramites {
+    text-align: center;
+ }
+ .cardTramites img {
+     border-radius: 28px;
+     border: 2px solid #3c3c3b;
+     padding: 30px;
+     height: 120px;
+ }
+ .cardTramites p {
+     padding: 0px;
+     margin: 0px;
+ }
+.btnAtras ion-button{
+    color: #3c3c3b;
+    text-transform: capitalize;
+}
+.containerQuestion {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0px 30px;
+}
+.containerQuestion img{
+    width: 40px;
+}
+.back-button{
+    text-transform: none;
+    font-family: 'poppins-R';
+}
+.salir ion-button{
+    margin-top: -10px;
+    color: white;
+}
+.optionButtons {
+    text-align: center;
+}
+.contenedorBuscador .searchbar-input.sc-ion-searchbar-md {
+    border-radius: 25px;
+    background-position: left 8px center;
+    height: 36px;
+    font-weight: 400;
+    color: #7f8490;
+    background-color: white;
+    border: 1px solid #009877;
+    box-shadow: 0 8px 14px rgb(79 185 168 / 19%) !important;
+}
+.contenedorBuscador ion-datetime {
+    border-radius: 25px;
+    background-position: left 8px center;
+    height: 36px;
+    font-weight: 400;
+    color: #7f8490;
+    background-color: white;
+    border: 1px solid #009877;
+    box-shadow: 0 8px 14px rgb(79 185 168 / 19%) !important;
+}
+// botones
+.ion-color-guindo {
+    --ion-color-base: var(--ion-color-guindo);
+    --ion-color-base-rgb: var(--ion-color-guindo-rgb);
+    --ion-color-contrast: var(--ion-color-guindo-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-guindo-contrast-rgb);
+    --ion-color-shade: var(--ion-color-guindo-shade);
+    --ion-color-tint: var(--ion-color-guindo-tint);
+}
+.ion-color-verde {
+	--ion-color-base: var(--ion-color-verde);
+	--ion-color-base-rgb: var(--ion-color-verde-rgb);
+	--ion-color-contrast: var(--ion-color-verde-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-verde-contrast-rgb);
+	--ion-color-shade: var(--ion-color-verde-shade);
+	--ion-color-tint: var(--ion-color-verde-tint);
+}
+.ion-color-verdeclaro {
+	--ion-color-base: var(--ion-color-verdeclaro);
+	--ion-color-base-rgb: var(--ion-color-verdeclaro-rgb);
+	--ion-color-contrast: var(--ion-color-verdeclaro-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-verdeclaro-contrast-rgb);
+	--ion-color-shade: var(--ion-color-verdeclaro-shade);
+	--ion-color-tint: var(--ion-color-verdeclaro-tint);
+}
+.ionic-selectable-documentation-configuration {
+    .modal-wrapper { 
+        ionic-selectable-modal { 
+            ion-header { 
+                ion-toolbar { 
+                    --background: var(--ion-color-lila);
+                    color: #fff; 
+                }
+            } ion-searchbar { 
+                --background: var(--ion-color-tertiary); 
+                .searchbar-input { 
+                    // background: transparent;
+                    color: #fff;
+                    box-shadow: unset;
+                    text-transform: uppercase;
+                    border-radius: 8px;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: #9183b1;
+                } 
+                .searchbar-search-icon { 
+                    color: #fff; 
+                } 
+                .searchbar-clear-button { 
+                    color: #fff; 
+                } 
+            } ion-footer { 
+                background: var(--ion-color-dark); 
+                ion-toolbar { 
+                    --background: var(--ion-color-dark);
+                    ion-button { 
+                        display: inline-block !important;
+                        --background: var(--ion-color-warning); 
+                    } 
+                } 
+            } 
+        } 
+    } 
+}

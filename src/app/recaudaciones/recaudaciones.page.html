@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar class="header-color">
+    <ion-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2" class="iconTitle">
+            <ion-menu-button>
+              <ion-icon name="reorder-three-outline"></ion-icon>
+            </ion-menu-button>
+          </ion-col>
+          <ion-col size="10">
+            <div class="ion-text-center">
+              <h2>Recaudaciones</h2>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="false" class="ion-no-padding fondoStrongWhite">
+  <div class="fondoContenedor">
+    <div class="btnAtras">
+      <ion-button fill="clear" (click)="goBack()" class="ion-no-padding" routerDirection='back'>
+        <ion-icon name="chevron-back-outline"></ion-icon> Atrás
+      </ion-button>
+    </div>
+
+    <div class="titulo">
+      <h3>PRESUPUESTADO VS RECAUDADO</h3>
+    </div>
+
+    <div class="cardFinanzas">
+      <ion-card class="ion-no-padding ion-no-margin">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="document-text-outline"></ion-icon>
+            PRESUPUESTADO VS RECAUDADO
+          </ion-card-title>
+        </ion-card-header>        
+        <ion-card-content>
+          <canvas #barChart></canvas>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>
+

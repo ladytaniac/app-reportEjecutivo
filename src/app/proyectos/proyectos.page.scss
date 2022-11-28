@@ -1,0 +1,34 @@
+.contenedorBuscador {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #06775c;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #4fb9a829;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+ion-select {
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #009877;
+    box-shadow: 0 8px 14px rgb(79 185 168 / 19%) !important;
+}
+ion-card-header {
+    background-color: #ae1857;
+    padding: 10px 15px;
+}
+ion-card-title {
+    color: white;
+    font-size: 16px;
+}
+ion-card-subtitle {
+    color: #f9b154;
+}
+ion-card-content {
+    padding: 10px 15px;
+    color: black;
+}
+ion-card-content ion-button {
+    height: 20px;
+}

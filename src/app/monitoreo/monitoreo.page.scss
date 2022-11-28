@@ -1,0 +1,44 @@
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+.contenedorBuscador {
+    width: 300px;
+    margin: 0 auto;
+}
+ion-card-header {
+    background-color: #ae1857;
+    padding: 10px 15px;
+}
+ion-card-title {
+    color: white;
+    font-size: 16px;
+}
+ion-card-subtitle {
+    color: #f9b154;
+}
+ion-card-content {
+    padding: 10px 15px;
+}
+.tableMonitoreo table {
+    width: 100%;
+    border: 1px solid #999;
+    border-collapse: collapse;
+}
+.tableMonitoreo table td, .tableMonitoreo table th {
+    padding: 3px;
+    color: black;
+    font-size: 14px;
+}
+.tableMonitoreo table tr:nth-child(even) {
+    background-color: #ae185714;
+}
+.tableMonitoreo table tr:hover {
+    background-color: #ddd;
+}
+.tableMonitoreo table th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: left;
+    background-color: #ae1857;
+    color: white;
+}

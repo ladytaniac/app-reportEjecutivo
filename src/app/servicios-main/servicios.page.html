@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar class="header-color">
+    <ion-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2" class="iconTitle">
+            <ion-menu-button>
+              <ion-icon name="reorder-three-outline"></ion-icon>
+            </ion-menu-button>
+          </ion-col>
+          <ion-col size="10">
+            <div class="ion-text-center">
+              <img src="assets/imgs/principales/logo-reporteEjecutivo.png" alt="" />
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="false" class="ion-no-padding fondoStrongWhite">
+  <div class="fondoContenedor">
+    <ion-grid>
+      <div>
+        <ion-row>
+          <ion-col>
+            <div class="cardTramites" (click)="mostrarRRHH()">
+              <img src="assets/imgs/iconos/icon-recursoshumanos.png" alt="" />
+              <p>Recursos humanos</p>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="cardTramites" (click)="recaudaciones()">
+              <img src="assets/imgs/iconos/icon-recaudaciones.png" alt="" />
+              <p>Recaudaciones</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div class="cardTramites" (click)="monitoreo()">
+              <img src="assets/imgs/iconos/icon-monitoreo.png" alt="" />
+              <p>Monitoreo</p>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="cardTramites" (click)="atenciones()">
+              <img src="assets/imgs/iconos/icon-atencion.png" alt=""/>
+              <p>Atención</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div class="cardTramites" (click)="proyecto()">
+              <img src="assets/imgs/iconos/icon-proyecto.png" alt=""/>
+              <p>Proyectos</p>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="cardTramites" (click)="ventanillaTramites()">
+              <img src="assets/imgs/iconos/icon-ventanillatramites.png" alt=""/>
+              <p>Ventanilla de trámites</p>
+            </div>
+          </ion-col>
+        </ion-row> 
+      </div>
+    </ion-grid>
+  </div>
+</ion-content>

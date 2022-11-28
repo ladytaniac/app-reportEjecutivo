@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar class="header-color">
+    <ion-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2" class="iconTitle">
+            <ion-menu-button>
+              <ion-icon name="reorder-three-outline"></ion-icon>
+            </ion-menu-button>
+          </ion-col>
+          <ion-col size="10">
+            <div class="ion-text-center">
+              <h2>Monitoreo</h2>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="false" class="ion-no-padding fondoStrongWhite">
+  <div class="fondoContenedor">
+    <div class="btnAtras">
+      <ion-button fill="clear" (click)="goBack()" class="ion-no-padding" routerDirection='back'>
+        <ion-icon name="chevron-back-outline"></ion-icon> Atrás
+      </ion-button>
+    </div>
+    <div class="titulo">
+      <h3>MONITOREO DE NOTAS MUNCIPALES</h3>
+    </div>
+
+    <div class="contenedorBuscador">
+      <form [formGroup]="form">
+        <ion-row>
+          <ion-col size="6">
+            <ion-label position="floating">Fecha *</ion-label>
+            <ion-datetime displayFormat="YYYY-MM-DD" min="1940-01-01" [max]="myDate" formControlName="fecha_submit"
+            placeholder="AAAA-MM-DD" cancelText="Cancelar" doneText="Aceptar"></ion-datetime>
+            <div *ngIf="fecha_submit.invalid && (fecha_submit.dirty || fecha_submit.touched)" class="error-label">
+              <p *ngIf="fecha_submit.errors.required">Fecha es requerido</p>
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button shape="round" color="verde" (click)="buscar()" class="btncolor" style="margin-top: 24px;">
+              <ion-icon name="search-outline"></ion-icon>
+              Buscar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </div>
+
+    <div [hidden]="!showDatos">
+      <div class="cardVacante">
+        <ion-card class="ion-no-padding ion-no-margin">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="document-text-outline"></ion-icon>
+              NOTAS MUNICIPALES
+            </ion-card-title>
+          </ion-card-header>        
+          <ion-card-content>
+            <div class="tableMonitoreo">
+              <table>
+                <tr>
+                  <th>Nota</th>
+                  <th>Cantidad</th>
+                  <th>Porcentaje</th>
+                </tr>
+                <tr *ngFor = "let row of lstMonitoreo">
+                  <td>
+                    {{row['nombre']}}
+                  </td>
+                  <td>
+                    {{row['monto']}}
+                  </td>
+                  <td>
+                    {{row['porcentaje']}} %
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td style="background-color: #ae18573b;"><strong>{{ total }}</strong></td>
+                  <td style="background-color: #ae18573b;"><strong>{{ porcentaje }}</strong></td>
+                </tr>
+              </table>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <div class="cardGrafica">
+        <ion-card class="ion-no-padding ion-no-margin">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="document-text-outline"></ion-icon>
+              NOTAS ALCALDE
+            </ion-card-title>
+          </ion-card-header>        
+          <ion-card-content>
+            <div>
+              <canvas #barChart></canvas>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

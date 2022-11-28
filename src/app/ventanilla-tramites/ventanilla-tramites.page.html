@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar class="header-color">
+    <ion-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2" class="iconTitle">
+            <ion-menu-button>
+              <ion-icon name="reorder-three-outline"></ion-icon>
+            </ion-menu-button>
+          </ion-col>
+          <ion-col size="10">
+            <div class="ion-text-center">
+              <h2>Ventanilla trámites</h2>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="false" class="ion-no-padding fondoStrongWhite">
+  <div class="fondoContenedor">
+    <div class="btnAtras">
+      <ion-button fill="clear" (click)="goBack()" class="ion-no-padding" routerDirection='back'>
+        <ion-icon name="chevron-back-outline"></ion-icon> Atrás
+      </ion-button>
+    </div>
+    <div class="titulo">
+      <h3>HOJA DE RUTA</h3>
+    </div>
+    <div class="contenedorBuscador">
+      <form [formGroup]="form">
+        <ion-row>
+          <ion-col size="12">
+            <ion-label position="floating">Gestión (<strong class="txtQuindo">*</strong>)</ion-label>      
+            <ion-input  type="text" required formControlName="gestion" ></ion-input>            
+          </ion-col>
+          <ion-col size="12">
+            <ion-label position="floating">Tipo de busqueda (<strong class="txtQuindo">*</strong>)</ion-label>
+            <ion-select [compareWith]="compareTipoItem" interface="popover" formControlName="tipo">
+              <ion-select-option *ngFor="let item of lstTipoBusqueda" [value]="item.id">{{ item.nombre }}
+              </ion-select-option>
+            </ion-select>
+          </ion-col>
+
+          <ion-col size="12">
+            <ion-label position="floating">Busqueda (<strong class="txtQuindo">*</strong>)</ion-label>
+            <ion-searchbar class="ion-no-padding" placeholder="Buscar" formControlName="dato">
+            </ion-searchbar>
+          </ion-col>
+
+          <ion-col size="12" class="ion-text-center">
+            <ion-button shape="round" color="verde" (click)="buscar()" class="btncolor" style="margin-top: 5px;" [disabled]="!form.valid">
+              <!-- <ion-icon name="search-outline"></ion-icon> -->
+              Buscar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </div>
+    <div *ngIf="showInfo == true">
+      <div *ngFor="let hruta of lstHojaRutas">
+        <div class="cardVacante">
+          <ion-card class="ion-no-padding ion-no-margin">
+            <ion-card-header>
+              <ion-card-title>
+                <ion-icon name="document-outline"></ion-icon>
+                Nro. gral: {{ hruta['nro'] }}
+              </ion-card-title>
+              <ion-card-subtitle>
+                Nombre: {{ hruta['nombre'] }}
+              </ion-card-subtitle>
+            </ion-card-header>
+          
+            <ion-card-content>
+              <ion-row>
+                <ion-col size="5" class="ion-no-padding">
+                </ion-col>
+                <ion-col size="7" class="ion-no-padding ion-text-right">
+                  <ion-button fill="clear" (click)="createPDF(hruta)" class="ion-no-padding" routerDirection='back'>
+                    <ion-icon name="print-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <p>Fecha: <ion-badge color="verdeclaro">{{ hruta['fecha'] }}</ion-badge></p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">Gestión: <strong class="txtLila">{{ hruta['gestion'] }}</strong></ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">Beneficiario: {{ hruta['beneficiario'] }}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">Institución: <strong class="txtVerde">{{ hruta['institucion'] }}</strong></ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">Asunto: {{ hruta['asunto'] }}</ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 10px;" *ngIf="showInfo == false">
+      <ion-card class="ion-no-padding ion-no-margin" *ngIf="mensaje != ''">
+        <ion-card-header>
+          <ion-card-title>
+            Resultado de la busqueda
+          </ion-card-title>
+        </ion-card-header>        
+        <ion-card-content>
+          <ion-icon name="information-circle-outline"></ion-icon> {{ mensaje }}
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>
