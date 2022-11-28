@@ -5,9 +5,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { GraphicListPageRoutingModule } from './graphic-list-routing.module';
+import { InfoListPageRoutingModule } from './info-list-routing.module';
 
-import { GraphicListPage } from './graphic-list.page';
+import { InfoListPage } from './info-list.page';
 
 @NgModule({
   imports: [
@@ -15,8 +15,8 @@ import { GraphicListPage } from './graphic-list.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    GraphicListPageRoutingModule
+    InfoListPageRoutingModule
   ],
-  declarations: [GraphicListPage]
+  declarations: [InfoListPage]
 })
-export class GraphicListPageModule {}
+export class InfoListPageModule {}

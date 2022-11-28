@@ -2,9 +2,12 @@ import { Component, OnInit, ViewChild  } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Platform, ModalController } from '@ionic/angular';
 import { environment } from '@env/environment';
 import { ChartOptions, ChartType,  } from 'chart.js';
 import { MensajesService } from '../proveedores/mensajes.service';
+import { InfoListPage } from './info-list/info-list.page';
+import { ConfigDatosApp } from 'src/configuracion/config';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -19,6 +22,7 @@ export class MonitoreoPage implements OnInit {
   bars: any;
   colorArray: any;
   URL = environment.apiMonitoreo;
+  URL_MONITOREOLIST = environment.apiMonitoreoTendencia + '/get-list-tendencia';
   lstMonitoreo = [];
   form: FormGroup;
   myDate: String = new Date().toISOString();
@@ -34,10 +38,14 @@ export class MonitoreoPage implements OnInit {
     private fbuilder: FormBuilder,
     private httpClient: HttpClient,
     private msjSrv: MensajesService,
+    private modalCtrl: ModalController,
+    private config: ConfigDatosApp,
   ) { }
 
   ngOnInit() {
     this.formulario();
+    this.config.setMenuSelect(this.config._MONITOREO);
+    window.dispatchEvent(new CustomEvent('menu'));
   }
 
   ionViewDidEnter() {
@@ -122,13 +130,51 @@ export class MonitoreoPage implements OnInit {
           data: ltsdata,
           backgroundColor: ['rgb(0, 152, 119, 1)', 'rgba(72, 39, 120, 1)', 'rgba(241, 135, 33, 1)'],
           borderColor: ['rgb(0, 152, 119, 0.2)', 'rgba(72, 39, 120, 0.2)', 'rgba(241, 135, 33, 0.2)'],
-          /* backgroundColor: 'rgb(0, 152, 119)',
-          borderColor: 'rgb(79, 185, 168)',*/
           borderWidth: 1
         }]
       },
+      options: {
+        onClick: (e, activeEls) => {
+          if (activeEls.length != 0) {
+            var dataIndex = activeEls[0].index; // index barra
+            var estadoselect = e['chart'].data.labels[dataIndex]; // nombre del estado
+            var fecha =  this.form.get('fecha_submit').value.split('T')[0];
+            // console.log('fecha=', fecha);
+            /*let graphics = {
+              "tendencia": estadoselect,
+              "fecha": 'INFORMACION',
+            }
+            setTimeout(() => { this.monitoreoList(graphics); }, 1500);*/
+
+            let formData: any = new FormData();
+            formData.append('fecha', fecha);
+            formData.append('tendencia', estadoselect);
+
+            this.httpClient.post(this.URL_MONITOREOLIST, formData).subscribe((data) => {
+              // console.log('data=', data);
+              if (data['status'] == true) {
+                let monitoreo = {
+                  "name": estadoselect,
+                  "data": data['response'].reporte,
+                }
+                // console.log('monitoreo=', monitoreo);
+                setTimeout(() => { this.monitoreoList(monitoreo); }, 1500);
+              }
+            });
+          }
+        }
+      }
     });
-  } 
+  }
+  private async monitoreoList(info){
+    const modal= await this.modalCtrl.create({
+      component: InfoListPage,
+      componentProps: {
+        informacion: info
+      }
+    });
+    return await modal.present();
+  }
 
   get fecha_submit() { return this.form.get('fecha_submit'); }
 }

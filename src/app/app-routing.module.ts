@@ -45,6 +45,10 @@ const routes: Routes = [
   {
     path: 'ventanilla-tramites',
     loadChildren: () => import('./ventanilla-tramites/ventanilla-tramites.module').then( m => m.VentanillaTramitesPageModule)
+  },
+  {
+    path: 'ejecucion-presupuestaria',
+    loadChildren: () => import('./ejecucion-presupuestaria/ejecucion-presupuestaria.module').then( m => m.EjecucionPresupuestariaPageModule)
   }
 
 
