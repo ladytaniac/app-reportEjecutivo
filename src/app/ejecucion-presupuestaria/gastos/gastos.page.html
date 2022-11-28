@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar class="header-color">
+    <ion-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2" class="iconTitle">
+            <ion-menu-button>
+              <ion-icon name="reorder-three-outline"></ion-icon>
+            </ion-menu-button>
+          </ion-col>
+          <ion-col size="10">
+            <div class="ion-text-center">
+              <h2>Gastos</h2>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="false" class="ion-no-padding fondoStrongWhite">
+  <div class="fondoContenedor">
+    <div class="btnAtras">
+      <ion-button fill="clear" (click)="goBack()" class="ion-no-padding" routerDirection='back'>
+        <ion-icon name="chevron-back-outline"></ion-icon> Atrás
+      </ion-button>
+    </div>
+    <div class="titulo">
+      <h3>Reporte de Gastos</h3>
+    </div>
+
+    <div class="contenedorTabla">
+      <div *ngFor="let info of lstGastos">
+        <ion-card class="ion-no-padding ion-no-margin" style="margin-bottom: 5px;" *ngIf="info['tipo_inversion'] != 'Total general'">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="cash-outline"></ion-icon>
+              {{ info['tipo_inversion'] }}
+            </ion-card-title>
+            <ion-card-subtitle>Presupuesto: {{ info['presupuesto'] }}</ion-card-subtitle>
+          </ion-card-header>        
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="9" class="ion-no-padding ion-no-margin">Devengado: {{ info['devengado'] }}</ion-col>
+              <ion-col size="3">%: <ion-badge color="warning" style="font-size: 12px;">{{  info['porcentaje'] }}</ion-badge></ion-col>
+            </ion-row>
+            <p>Saldo PPTO: {{ info['saldo_ppto'] }}</p>
+            <p>Pagado: {{ info['devengado'] }}</p>
+            <p>Saldo por pagar: <ion-badge color="verdeclaro" style="font-size: 12px;">{{ info['saldo_x_pagar'] }}</ion-badge></p>
+          </ion-card-content>
+        </ion-card>
+        <ion-card class="ion-no-padding ion-no-margin" style="margin-bottom: 5px;" *ngIf="info['tipo_inversion'] === 'Total general'">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="cash-outline"></ion-icon>
+              {{ info['tipo_inversion'] }}
+            </ion-card-title>
+            <ion-card-subtitle>Presupuesto: {{ info['presupuesto'] }}</ion-card-subtitle>
+          </ion-card-header>        
+          <ion-card-content style="background-color: #e871a330;">
+            <ion-row>
+              <ion-col size="9" class="ion-no-padding ion-no-margin">Devengado: {{ info['devengado'] }}</ion-col>
+              <ion-col size="3">%: <ion-badge color="warning" style="font-size: 12px;">{{  info['porcentaje'] }}</ion-badge></ion-col>
+            </ion-row>
+            <p>Saldo PPTO: {{ info['saldo_ppto'] }}</p>
+            <p>Pagado: {{ info['devengado'] }}</p>
+            <p>Saldo por pagar: <ion-badge color="verdeclaro" style="font-size: 12px;">{{ info['saldo_x_pagar'] }}</ion-badge></p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+    <div class="contenedorGrafica">
+      <ion-card class="ion-no-padding ion-no-margin">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="pie-chart-outline"></ion-icon>
+            Porcentaje de ejecución de gastos
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #pieChart></canvas>
+        </ion-card-content>
+      </ion-card>      
+    </div>
+  </div>
+</ion-content>

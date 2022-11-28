@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfigDatosApp } from '../../configuracion/config';
 
 interface SelectItem {
   valor: number;
@@ -13,9 +14,12 @@ interface SelectItem {
 export class RecursosHumanosPage implements OnInit {
   constructor(
     private router: Router,
+    private config: ConfigDatosApp,
   ) { }
 
   ngOnInit() {
+    this.config.setMenuSelect(this.config._RECURSOSHUMANOS);
+    window.dispatchEvent(new CustomEvent('menu'));
   }
 
   verVacantes() {

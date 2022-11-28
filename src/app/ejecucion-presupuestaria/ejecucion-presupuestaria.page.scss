@@ -1,0 +1,24 @@
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
+ion-card-header {
+    background-color: #ae1857;
+    padding: 10px 15px;
+}
+ion-card-title {
+    color: white;
+    font-size: 16px;
+}
+ion-card-subtitle {
+    color: #f9b154;
+}
+ion-card-content {
+    padding: 10px 15px;
+}
+.cardVacante {
+    margin-bottom: 10px;
+}
+.contenedorBuscador {
+    margin-bottom: 15px;
+}

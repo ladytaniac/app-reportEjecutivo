@@ -7,43 +7,89 @@
           <p>{{nombreCompleto}}</p>
           <p class="unidad">{{unidad}}</p>
         </div>
-        <div [hidden]="tipoFuncionario ==='SUPERVISOR'">
-        <ion-item [class]="menuSelect=='principal'?'menuSelect':'menuDeselect'" routerLink="/" routerLinkActive="true"
-          routerDirection="root" detail="false">
+        <ion-item [class]="menuSelect=='servicios'?'menuSelect':'menuDeselect'" routerLink="/" routerLinkActive="true" routerDirection="root" detail="false">
           <ion-icon slot="start" name="home-outline"></ion-icon>
           <ion-label>Inicio</ion-label>
         </ion-item>
-        <ion-item [class]="menuSelect=='servicios'?'menuSelect':'menuDeselect'" detail="false"
-          routerLink="/recursos-humanos" detail="false">
-          <ion-icon slot="start" name="people-outline"></ion-icon>
-          <ion-label>Recursos humanos</ion-label>
-        </ion-item>
-        <ion-item [class]="menuSelect=='reportes'?'menuSelect':'menuDeselect'" detail="false"
-          routerLink="/recaudaciones" detail="false">
-          <ion-icon slot="start" name="cash-outline"></ion-icon>
-          <ion-label>Recaudaciones</ion-label>
-        </ion-item>
-        <ion-item [class]="menuSelect=='reportes'?'menuSelect':'menuDeselect'" detail="false"
-          routerLink="/monitoreo" detail="false">
-          <ion-icon slot="start" name="laptop-outline"></ion-icon>
-          <ion-label>Monitoreo</ion-label>
-        </ion-item>
-        <ion-item [class]="menuSelect=='reportes'?'menuSelect':'menuDeselect'" detail="false"
-          routerLink="/atencion" detail="false">
-          <ion-icon slot="start" name="mic-outline"></ion-icon>
-          <ion-label>Atención</ion-label>
-        </ion-item>
-        <ion-item [class]="menuSelect=='reportes'?'menuSelect':'menuDeselect'" detail="false"
-          routerLink="/proyectos" detail="false">
-          <ion-icon slot="start" name="podium-outline"></ion-icon>
-          <ion-label>Proyectos</ion-label>
-        </ion-item>
-        <ion-item [class]="menuSelect=='reportes'?'menuSelect':'menuDeselect'" detail="false"
-          routerLink="/ventanilla-tramites" detail="false">
-          <ion-icon slot="start" name="layers-outline"></ion-icon>
-          <ion-label>Ventanilla de trámites</ion-label>
-        </ion-item>
-      </div>
+        <!-- ALCALDE -->
+        <div *ngIf="DNI === DNI_CONF1">
+          <ion-item [class]="menuSelect=='ventanilla'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/ventanilla-tramites" detail="false">
+            <ion-icon slot="start" name="layers-outline"></ion-icon>
+            <ion-label>Central de trámites</ion-label>
+          </ion-item>
+          <ion-item [class]="menuSelect=='rrhh'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/recursos-humanos" detail="false">
+            <ion-icon slot="start" name="people-outline"></ion-icon>
+            <ion-label>Recursos humanos</ion-label>
+          </ion-item>
+          <ion-item [class]="menuSelect=='recaudaciones'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/recaudaciones" detail="false">
+            <ion-icon slot="start" name="cash-outline"></ion-icon>
+            <ion-label>Recaudaciones</ion-label>
+          </ion-item>
+          <ion-item [class]="menuSelect=='proyectos'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/proyectos" detail="false">
+            <ion-icon slot="start" name="podium-outline"></ion-icon>
+            <ion-label>Proyectos</ion-label>
+          </ion-item>
+          <ion-item [class]="menuSelect=='monitoreo'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/monitoreo" detail="false">
+            <ion-icon slot="start" name="laptop-outline"></ion-icon>
+            <ion-label>Monitoreo</ion-label>
+          </ion-item>
+          <ion-item [class]="menuSelect=='atencion'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/atencion" detail="false">
+            <ion-icon slot="start" name="mic-outline"></ion-icon>
+            <ion-label>Atención</ion-label>
+          </ion-item>
+        </div>
+        <!-- SECRETARIO -->
+        <div *ngIf="DNI === DNI_CONF2">
+          <ion-item [class]="menuSelect=='ventanilla'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/ventanilla-tramites" detail="false">
+            <ion-icon slot="start" name="layers-outline"></ion-icon>
+            <ion-label>Central de trámites</ion-label>
+          </ion-item>
+          <ion-item [class]="menuSelect=='rrhh'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/recursos-humanos" detail="false">
+            <ion-icon slot="start" name="people-outline"></ion-icon>
+            <ion-label>Recursos humanos</ion-label>
+          </ion-item>
+          <ion-item [class]="menuSelect=='monitoreo'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/monitoreo" detail="false">
+            <ion-icon slot="start" name="laptop-outline"></ion-icon>
+            <ion-label>Monitoreo</ion-label>
+          </ion-item>
+        </div>
+        <!-- PERSONAL CON PRIVILEGIO-->
+        <div *ngIf="DNI === DNI_CONF3">
+          <ion-item [class]="menuSelect=='ventanilla'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/ventanilla-tramites" detail="false">
+            <ion-icon slot="start" name="layers-outline"></ion-icon>
+            <ion-label>Central de trámites</ion-label>
+          </ion-item>
+          <ion-item [class]="menuSelect=='rrhh'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/recursos-humanos" detail="false">
+            <ion-icon slot="start" name="people-outline"></ion-icon>
+            <ion-label>Recursos humanos</ion-label>
+          </ion-item>
+          <ion-item [class]="menuSelect=='recaudaciones'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/recaudaciones" detail="false">
+            <ion-icon slot="start" name="cash-outline"></ion-icon>
+            <ion-label>Recaudaciones</ion-label>
+          </ion-item>
+          <ion-item [class]="menuSelect=='monitoreo'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/monitoreo" detail="false">
+            <ion-icon slot="start" name="laptop-outline"></ion-icon>
+            <ion-label>Monitoreo</ion-label>
+          </ion-item>
+          <ion-item [class]="menuSelect=='atencion'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/atencion" detail="false">
+            <ion-icon slot="start" name="mic-outline"></ion-icon>
+            <ion-label>Atención</ion-label>
+          </ion-item>
+        </div>
         <ion-item lines="none" class="menuDeselect" (click)="logout()" detail="false" *ngIf="iniLogin">
           <ion-icon slot="start" name="log-out"></ion-icon>
           <ion-label>Cerrar sesión</ion-label>

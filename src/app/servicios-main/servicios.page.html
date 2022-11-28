@@ -21,18 +21,73 @@
 <ion-content [fullscreen]="false" class="ion-no-padding fondoStrongWhite">
   <div class="fondoContenedor">
     <ion-grid>
-      <div>
+      <div *ngIf="DNI === DNI_CONF1">
         <ion-row>
+          <ion-col>
+            <div class="cardTramites" (click)="ventanillaTramites()">
+              <img src="assets/imgs/iconos/icon-ventanillatramites.png" alt=""/>
+              <p>Central de trámites</p>
+            </div>
+          </ion-col>
           <ion-col>
             <div class="cardTramites" (click)="mostrarRRHH()">
               <img src="assets/imgs/iconos/icon-recursoshumanos.png" alt="" />
               <p>Recursos humanos</p>
             </div>
           </ion-col>
+        </ion-row>
+
+        <ion-row>
           <ion-col>
             <div class="cardTramites" (click)="recaudaciones()">
               <img src="assets/imgs/iconos/icon-recaudaciones.png" alt="" />
               <p>Recaudaciones</p>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="cardTramites" (click)="proyecto()">
+              <img src="assets/imgs/iconos/icon-proyecto.png" alt=""/>
+              <p>Proyectos</p>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <div class="cardTramites" (click)="monitoreo()">
+              <img src="assets/imgs/iconos/icon-monitoreo.png" alt="" />
+              <p>Monitoreo</p>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="cardTramites" (click)="ejecucionPresupuestaria()">
+              <img src="assets/imgs/iconos/icon-ejecucionpresupuestaria.png" alt=""/>
+              <p>Ejecución presupuestaria</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div class="cardTramites" (click)="atenciones()">
+              <img src="assets/imgs/iconos/icon-atencion.png" alt=""/>
+              <p>Atención</p>
+            </div>
+          </ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+      </div>
+      <div *ngIf="DNI === DNI_CONF2">
+        <ion-row>
+          <ion-col>
+            <div class="cardTramites" (click)="ventanillaTramites()">
+              <img src="assets/imgs/iconos/icon-ventanillatramites.png" alt=""/>
+              <p>Central de trámites</p>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="cardTramites" (click)="mostrarRRHH()">
+              <img src="assets/imgs/iconos/icon-recursoshumanos.png" alt="" />
+              <p>Recursos humanos</p>
             </div>
           </ion-col>
         </ion-row>
@@ -43,27 +98,48 @@
               <p>Monitoreo</p>
             </div>
           </ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+      </div>
+      <div *ngIf="DNI === DNI_CONF3">
+        <ion-row>
+          <ion-col>
+            <div class="cardTramites" (click)="ventanillaTramites()">
+              <img src="assets/imgs/iconos/icon-ventanillatramites.png" alt=""/>
+              <p>Central de trámites</p>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="cardTramites" (click)="mostrarRRHH()">
+              <img src="assets/imgs/iconos/icon-recursoshumanos.png" alt="" />
+              <p>Recursos humanos</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div class="cardTramites" (click)="recaudaciones()">
+              <img src="assets/imgs/iconos/icon-recaudaciones.png" alt="" />
+              <p>Recaudaciones</p>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="cardTramites" (click)="monitoreo()">
+              <img src="assets/imgs/iconos/icon-monitoreo.png" alt="" />
+              <p>Monitoreo</p>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>          
           <ion-col>
             <div class="cardTramites" (click)="atenciones()">
               <img src="assets/imgs/iconos/icon-atencion.png" alt=""/>
               <p>Atención</p>
             </div>
           </ion-col>
+          <ion-col></ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col>
-            <div class="cardTramites" (click)="proyecto()">
-              <img src="assets/imgs/iconos/icon-proyecto.png" alt=""/>
-              <p>Proyectos</p>
-            </div>
-          </ion-col>
-          <ion-col>
-            <div class="cardTramites" (click)="ventanillaTramites()">
-              <img src="assets/imgs/iconos/icon-ventanillatramites.png" alt=""/>
-              <p>Ventanilla de trámites</p>
-            </div>
-          </ion-col>
-        </ion-row> 
       </div>
     </ion-grid>
   </div>

@@ -1,9 +1,49 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>ejecucion-presupuestaria</ion-title>
+  <ion-toolbar class="header-color">
+    <ion-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2" class="iconTitle">
+            <ion-menu-button>
+              <ion-icon name="reorder-three-outline"></ion-icon>
+            </ion-menu-button>
+          </ion-col>
+          <ion-col size="10">
+            <div class="ion-text-center">
+              <h2>Eje. presupuestaria</h2>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-
+<ion-content [fullscreen]="false" class="ion-no-padding fondoStrongWhite">
+  <div class="fondoContenedor">
+    <div class="btnAtras">
+      <ion-button fill="clear" (click)="goBack()" class="ion-no-padding" routerDirection='back'>
+        <ion-icon name="chevron-back-outline"></ion-icon> Atrás
+      </ion-button>
+    </div>
+    <div class="fondoContenedor">
+      <ion-grid>
+        <div>
+          <ion-row>
+            <ion-col>
+              <div class="cardTramites" (click)="verGastos()">
+                <img src="assets/imgs/iconos/icon-ejecucionpresupuestaria-gastos.png" alt="" />
+                <p>Gastos</p>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="cardTramites" (click)="verGastosInversion()">
+                <img src="assets/imgs/iconos/icon-ejecucionpresupuestaria-gastosinversion1.png" alt="" />
+                <p>Gastos e inversión</p>
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-grid>
+    </div>
+  </div>
 </ion-content>

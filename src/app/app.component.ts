@@ -7,7 +7,6 @@ import { Network } from '@ionic-native/network/ngx';
 import { MensajesService } from './proveedores/mensajes.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '@env/environment';
-// import { ConfigDatosApp } from '../../configuracion/config';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +15,10 @@ import { environment } from '@env/environment';
 })
 export class AppComponent {
   tipoFuncionario;
+  DNI;
+  DNI_CONF1;
+  DNI_CONF2;
+  DNI_CONF3;
   private menuSelect: string;
   private iniLogin: boolean;
   private nombreCompleto: string;
@@ -34,6 +37,9 @@ export class AppComponent {
   ) {
     this.iniLogin = false;
     this.avatar = 'assets/imgs/principales/alcaldecbba.jpg';
+    this.DNI_CONF1 = this.config.getDniAlcalde();
+    this.DNI_CONF2 = this.config.getDniSecretario();
+    this.DNI_CONF3 = this.config.getDniOtherPerson();
   }
   ngOnInit() {
     this.iniAppConfig();
@@ -46,15 +52,22 @@ export class AppComponent {
     });
     window.addEventListener('user:login', () => {
       this.iniLogin = true;
-      this.nombreCompleto = this.config.session['nombres'];
+      this.DNI = this.config.session['dni'];
+      
+      if(this.DNI == this.DNI_CONF1) {
+        this.avatar = 'assets/imgs/principales/alcaldecbba.jpg';
+      } else {
+        this.avatar = 'assets/imgs/principales/usuario.png';
+      }
+      this.nombreCompleto = this.config.session['nombre'];
       this.unidad = this.config.session['unidad'];
       this.tipoFuncionario = this.config.session['tipo_user'];
-      this.avatar = 'assets/imgs/principales/alcaldecbba.jpg';
     });
     window.addEventListener('menu', () => {
       this.menuSelect = this.config.getMenuSelect();
     });
   }
+
   private iniAppConfig(): void {
     this.platform.ready().then(_ => {
       if (this.platform.is('android')) {
@@ -91,11 +104,6 @@ export class AppComponent {
                 'Authorization': 'Bearer ' + acceso
               })
             };
-
-            this.httpClient.get(environment.apiCloseSession, this.httpOptions).subscribe(info => {
-              console.log(info);
-            });
-
             this.userSrv.logoutUser().then(() => {
               this.router.navigateByUrl('/');
               this.iniLogin = false;
@@ -107,10 +115,4 @@ export class AppComponent {
     })
     await alertaVentana.present();
   }
-  // private select(nombreMenu:string):void{
-  //   this.menuSelect=nombreMenu;
-  //   if (nombreMenu==='logout') {
-  //     this.logout();
-  //   }
-  // }
 }

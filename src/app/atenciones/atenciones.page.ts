@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConfigDatosApp } from 'src/configuracion/config';
 import { environment } from '@env/environment';
 import { Chart } from 'chart.js';
 
@@ -32,7 +33,8 @@ export class AtencionesPage implements OnInit {
   constructor(
     private router: Router,
     private fbuilder: FormBuilder,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private config: ConfigDatosApp,
   ) { }
 
   ngOnInit() {
@@ -40,6 +42,8 @@ export class AtencionesPage implements OnInit {
     this.inicioTipoAtencion();
     this.inicioTipoCaso();
     this.inicioTotales();
+    this.config.setMenuSelect(this.config._ATENCION);
+    window.dispatchEvent(new CustomEvent('menu'));
   }
   ionViewDidEnter() {
     // this.createBarChart(this.tcasoMotivos, this.tcasoCantidad);

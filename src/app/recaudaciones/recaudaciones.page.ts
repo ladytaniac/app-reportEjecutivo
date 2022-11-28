@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { environment } from '@env/environment';
 import { FinanzasService } from '../servicios/finanzas.service';
+import { ConfigDatosApp } from '../../configuracion/config';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -19,11 +20,14 @@ export class RecaudacionesPage implements OnInit {
   lstRecaudado = [];
   constructor(
     private router: Router,
-    private srvFinanzas: FinanzasService
+    private srvFinanzas: FinanzasService,
+    private config: ConfigDatosApp,
   ) { }
 
   ngOnInit() {
     this.finanzas();
+    this.config.setMenuSelect(this.config._RECAUDACIONES);
+    window.dispatchEvent(new CustomEvent('menu'));
   }
 
   finanzas() {

@@ -7,6 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: VentanillaTramitesPage
+  },
+  {
+    path: 'seguimiento-ruta',
+    loadChildren: () => import('./seguimiento-ruta/seguimiento-ruta.module').then( m => m.SeguimientoRutaPageModule)
+  },
+  {
+    path: 'show-pdf',
+    loadChildren: () => import('./show-pdf/show-pdf.module').then( m => m.ShowPdfPageModule)
   }
 ];
 

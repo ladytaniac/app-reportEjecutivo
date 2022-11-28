@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar class="header-color">
+    <ion-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="11" class="iconTitle">
+            <h2>Archivo</h2>
+          </ion-col>
+          <ion-col size="1" class="salir">
+            <ion-button fill="clear" class="ion-no-padding" (click)="closeModal()">
+              <ion-icon slot="icon-only" name="close" class="closeModal"></ion-icon>
+            </ion-button>         
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false" class="ion-no-padding fondoStrongWhite">
+  <div class="fondoContenedor">
+    <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(pathFile)" style="width:400px; height:500px;" frameborder="0"></iframe>
+    <!-- 
+    <pdf-viewer [src]="pdfSrc2"
+      [render-text]="true"
+      [original-size]="false"
+      style="width: 400px; height: 500px"
+    ></pdf-viewer>
+    -->
+  </div>
+</ion-content>

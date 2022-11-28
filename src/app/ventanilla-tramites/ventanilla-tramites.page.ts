@@ -5,9 +5,14 @@ import { AtlasService } from '../servicios/atlas.service';
 import { HttpClient } from '@angular/common/http';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { File, IWriteOptions } from '@ionic-native/file/ngx';
-import { Platform } from '@ionic/angular';
+import { Platform, ModalController } from '@ionic/angular';
 import { ConfigDatosApp } from 'src/configuracion/config';
 import { MensajesService } from '../proveedores/mensajes.service';
+import { SeguimientoRutaPage } from './seguimiento-ruta/seguimiento-ruta.page';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { AlertController } from '@ionic/angular';
+import { DomSanitizer} from '@angular/platform-browser';
+import { ShowPdfPage } from './show-pdf/show-pdf.page';
 
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
@@ -38,7 +43,11 @@ export class VentanillaTramitesPage implements OnInit {
   logoData = null;
   fechaConsulta;
   pdfObj = null;
+  lstYears = [];
+  activeYear = new Date().getFullYear();
+  showArchivo: boolean = false;
 
+  lstHRutaArtchivo = [];
   constructor(
     private router: Router,
     private fbuilder: FormBuilder,
@@ -49,9 +58,17 @@ export class VentanillaTramitesPage implements OnInit {
     private plt: Platform,
     private config: ConfigDatosApp,
     private msjSrv: MensajesService,
-  ) { }
+    private modalCtrl: ModalController,
+    private transfer: FileTransfer,
+    public alertController: AlertController,
+    public sanitizer: DomSanitizer
+  ) {
+    this.sanitizer.bypassSecurityTrustResourceUrl(localStorage.getItem("url"));
+  }
 
   ngOnInit() {
+    this.config.setMenuSelect(this.config._VENTANILLATRAMITES);
+    window.dispatchEvent(new CustomEvent('menu'));
     this.formulario();
     this.loadLocalAssetToBase64();
     const now = new Date();
@@ -59,10 +76,17 @@ export class VentanillaTramitesPage implements OnInit {
     var fecha = datestring.split('T')[0];
 
     this.fechaConsulta = fecha.split('-')[2] + '-' + fecha.split('-')[1] + '-' + fecha.split('-')[0];
+
+    const anio = new Date().getFullYear();
+    for(var i = 0; i<5; i++)
+    { 
+      const year = anio - i;
+      this.lstYears.push(year);
+    }
   }
   formulario() {
     this.form = this.fbuilder.group({
-      gestion: ["", [Validators.required]],
+      gestion: [this.activeYear, [Validators.required]],
       tipo: ["N", [Validators.required]],
       dato: ["", [Validators.required]],
     });
@@ -70,12 +94,45 @@ export class VentanillaTramitesPage implements OnInit {
 
   buscar() {
     if(this.form.valid) {
+      var listaBusqueda = [];
       this.srvAtlas.getListaTramites(this.form.value).subscribe((data) => {
         if(data['status'] == true) {
           this.showInfo = true;
           this.lstHojaRutas = data['response'];
+          var lstNewArchivo = [];
+          for(let hruta of this.lstHojaRutas){
+            const infoSend = {'gestion':hruta['gestion'],'numero':hruta['nro']};
+            this.srvAtlas.getSeguimientoHojaRuta(infoSend).subscribe( datal=> {
+              if(data['status'] == true) {
+                const datosSeccion = datal['response'];
+                const numSec = datosSeccion[0]['num_sec'];
+                const infoSec = { 'dato': numSec };
+                this.srvAtlas.getArchivosTramites(infoSec).subscribe( dataarc => {
+                  if(dataarc['status'] == true) {                
+                    const dataArchivo = dataarc['response'];
+                    for(let arch of dataArchivo){
+                      const infoSend = {'ruta_doc':arch['ruta_doc'],'nombre_doc':arch['nombre_doc']};
+                      lstNewArchivo.push(infoSend);
+                    }
+                  }
+                });
+              }
+            });
+            const infoActual = {
+              'asunto':hruta['asunto'],
+              'fecha':hruta['fecha'],
+              'gestion':hruta['gestion'],
+              'institucion':hruta['institucion'],
+              'nombre':hruta['nombre'],
+              'nro':hruta['nro'],
+              'archivos':lstNewArchivo,
+            };
+            listaBusqueda.push(infoActual); 
+          }
+          this.lstHRutaArtchivo = listaBusqueda;
           this.form.reset();
           this.form.get('tipo').setValue('N');
+          this.form.get('gestion').setValue(this.activeYear);
         } else {
           this.showInfo = false;
           this.mensaje = 'Lo siento la hoja de rutas no fue encontrada'
@@ -116,7 +173,7 @@ export class VentanillaTramitesPage implements OnInit {
           margin: [0, 5, 0, 5],
           alignment: 'center',
           bold: true,
-          color: '#ae1857',
+          color: '#482778',
         },
         {
           fontSize: 10,
@@ -124,7 +181,6 @@ export class VentanillaTramitesPage implements OnInit {
           margin: [0, 3, 0, 4],
           alignment: 'right',
           bold: true,
-          color: '#482778',
         },
         {
           table: {
@@ -134,7 +190,6 @@ export class VentanillaTramitesPage implements OnInit {
                   {
                     fontSize: 10,
                     border: [false, false, false, false],
-                    // fillColor: '#fff',
                     bold: true,
                     text: 'Nro.: ' + info['nro'],
                     margin: [-5, 5, 0, 0],
@@ -180,25 +235,72 @@ export class VentanillaTramitesPage implements OnInit {
       ]
     }
 
-    // this.pdfObj = pdfMake.createPdf(pdfDefinition).download(`pdf-${+info['nro']}.pdf`);
-
     this.pdfObj = pdfMake.createPdf(pdfDefinition);
 
     if (this.plt.is('cordova')) {
       this.pdfObj.getBuffer((buffer) => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
 
-        // Save the PDF to the data Directory of our App
+        // Guardamos el PFF en el dispositivo
         this.file.writeFile(this.config.getDirectorio(), 'pdf-'+info['nro']+'.pdf', blob, { replace: true }).then((fileEntry) => {
-          // Open the PDf with the correct OS tools
           this.msjSrv.mostrarAlerta("Descarga exitosa","La hoja de rutas se descargó en la carpeta de descargas. Nombre: "+ 'pdf-'+info['nro']+'.pdf');
           this.fileOpener.open(this.config.getDirectorio() + 'pdf-'+info['nro']+'.pdf', 'application/pdf');
         })
       });
     } else {
-      // On a browser simply use download!
+      // Descargamos modo escritorio
       this.pdfObj.download(`pdf-${+info['nro']}.pdf`);
     }
+  }
+  adjuntos(info) {
+    var path = info[0]['ruta_doc'];
+    this.showPdf(path);
+  }
+  adjuntos2(info) {    
+    if(info.length === 1) {
+      if (this.plt.is('cordova')) {
+        const fileTransfer: FileTransferObject = this.transfer.create();
+        const pathFile = this.config.getDirectorio()+ info[0]['nombre_doc'];
+        fileTransfer.download(info[0]['ruta_doc'], this.file.dataDirectory + info[0]['nombre_doc']).then((entry) => {
+          alert(entry.toURL());
+          this.fileOpener.open(entry.toURL(), 'application/pdf');
+        }, (error) => {
+        });
+      } else {
+        window.open(info[0]['ruta_doc']);
+      }
+    }
+
+  }
+
+  // mas archivos
+  showFiles(info) {
+    var lstBotones = [];
+    for(let d of info){
+      const informacion = { text: d['nombre_doc'], handler: () => {this.showPdf(d['ruta_doc']); } };
+      lstBotones.push(informacion);
+    }
+    const btnCerrar = { text: 'Cerrar',  handler: () => { }};
+    lstBotones.push(btnCerrar);
+
+    this.alertController.create({
+      header: 'Lista de Archivos',
+      subHeader: 'Presione sobre la lista de botones para ver el archivo',
+      buttons: lstBotones
+    }).then(res => {
+      res.present();
+    });
+  }
+  download(url) {
+  }
+  private async seguimiento(info){
+    const modal= await this.modalCtrl.create({
+      component: SeguimientoRutaPage,
+      componentProps: {
+        sch: info
+      }
+    });
+    return await modal.present();
   }
 
   private getStoragePath() {
@@ -217,10 +319,20 @@ export class VentanillaTramitesPage implements OnInit {
         });
     });
   }
+  private async showPdf(pathurl){
+    const modal= await this.modalCtrl.create({
+      component: ShowPdfPage,
+      componentProps: {
+        url: pathurl
+      }
+    });
+    return await modal.present();
+  }
   goBack() {
     this.router.navigate(['/servicios']);
     this.lstHojaRutas = [];
     this.form.reset();
     this.form.get('tipo').setValue('N');
+    this.form.get('gestion').setValue(this.activeYear);
   }
 }
