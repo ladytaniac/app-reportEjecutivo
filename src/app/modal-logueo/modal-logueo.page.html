@@ -4,8 +4,12 @@
       <ion-icon name="chevron-back-outline"></ion-icon> Atras
     </ion-button>
   </div>
+  
+  <div class="contVerificacion ion-text-center" *ngIf="accessRE == true">
+    <ion-button shape="round" color="guindo" (click)="verificar()">Verificar acceso</ion-button>
+  </div>
 
-  <div class="fondoContenedor">
+  <div class="fondoContenedor" *ngIf="accessRE == false">
     <form #logueoForm="ngForm" novalidate style="width: 80%;">
       <div class="itemContenedor">
         <div class="labelWhite">Usuario</div>        

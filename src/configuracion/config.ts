@@ -28,7 +28,7 @@ export class ConfigDatosApp{
     // private readonly _DIRECTORIO_IOS= cordova.file.documentsDirectory;
     constructor(){
         this.session= {};
-        this.arrayIdAccess = ['eaacd7dc-3dd3-4132-86ed-57d738af20ff', '3c6d028b-2946-4e15-b5a9-cc4283c83323', 'dee4e205-8e1f-48a8-9ac3-e4916e26a31a', 'c9c1d2a4-35a6-4cef-899e-5378e4110529']; //Aumentar los otros accesos
+        this.arrayIdAccess = ['0c1b7d5b-b392-47bf-bbe9-d1bb550f7552', '8b06414e-9ee0-4460-bacf-6619420f5b3d']; //Aumentar los otros accesos
     }
     public set_tipo_plataforma(valor: string):void{
         this._tipo_plataforma=valor;
