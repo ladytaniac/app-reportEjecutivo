@@ -38,6 +38,11 @@
             <ion-icon slot="start" name="laptop-outline"></ion-icon>
             <ion-label>Monitoreo</ion-label>
           </ion-item>
+          <ion-item [class]="menuSelect=='ejecucionpresupuestaria'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/ejecucion-presupuestaria" detail="false">
+            <ion-icon slot="start" name="wallet-outline"></ion-icon>
+            <ion-label>Eje. presupuestaria</ion-label>
+          </ion-item>
           <ion-item [class]="menuSelect=='atencion'?'menuSelect':'menuDeselect'" detail="false"
             routerLink="/atencion" detail="false">
             <ion-icon slot="start" name="mic-outline"></ion-icon>

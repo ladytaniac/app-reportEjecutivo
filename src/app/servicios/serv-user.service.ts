@@ -8,7 +8,7 @@ import { Storage } from '@ionic/storage-angular';
   providedIn: 'root'
 })
 export class ServUserService {
-  private readonly _SESION:string= 'sesion';
+  private readonly _SESION:string= 'session';
   private httpOptions: object;
   constructor(
     private http: HttpClient,

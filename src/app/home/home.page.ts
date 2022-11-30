@@ -57,7 +57,7 @@ export class HomePage implements OnInit{
   }
   ionViewDidEnter(){
     this.platform.ready().then(()=>{
-      this.storage.get('sesion').then((res)=>{
+      this.storage.get('session').then((res)=>{
         if (res!=null) {
           this.config.session=res;
           // console.log('datos guardados: ',res);
