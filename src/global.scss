@@ -325,3 +325,25 @@ ion-title {
         } 
     } 
 }
+
+ion-alert {
+    //background color
+    .alert-wrapper.sc-ion-alert-md {
+    }
+    .alert-title.sc-ion-alert-md {
+      color: var(--ion-text-color, #ffffff);
+    }
+
+    .alert-head {
+        background-color: #06775c;
+        border-radius: 0px 0px 7px 7px;
+    }
+    .alert-message {
+        margin-top: 10px;
+    }
+    // Button color
+    .alert-button-inner.sc-ion-alert-md {
+      color: #482778;
+      font-weight: bold;
+    }
+}
