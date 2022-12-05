@@ -56,7 +56,11 @@ export class AppComponent {
       
       if(this.DNI == this.DNI_CONF1) {
         this.avatar = 'assets/imgs/principales/alcaldecbba.jpg';
-      } else {
+      } 
+      else if (this.DNI == this.DNI_CONF3) {
+        this.avatar = 'assets/imgs/principales/saconeta.jpeg';
+      } 
+      else {
         this.avatar = 'assets/imgs/principales/usuario.png';
       }
       this.nombreCompleto = this.config.session['nombre'];

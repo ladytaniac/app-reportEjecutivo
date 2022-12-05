@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header mode="md">
   <ion-toolbar class="header-color">
     <ion-title>
       <ion-grid>
@@ -116,6 +116,7 @@
             </div>
           </ion-col>
         </ion-row>
+
         <ion-row>
           <ion-col>
             <div class="cardTramites" (click)="recaudaciones()">
@@ -124,14 +125,28 @@
             </div>
           </ion-col>
           <ion-col>
+            <div class="cardTramites" (click)="proyecto()">
+              <img src="assets/imgs/iconos/icon-proyecto.png" alt=""/>
+              <p>Proyectos</p>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
             <div class="cardTramites" (click)="monitoreo()">
               <img src="assets/imgs/iconos/icon-monitoreo.png" alt="" />
               <p>Monitoreo</p>
             </div>
           </ion-col>
+          <ion-col>
+            <div class="cardTramites" (click)="ejecucionPresupuestaria()">
+              <img src="assets/imgs/iconos/icon-ejecucionpresupuestaria.png" alt=""/>
+              <p>Ejecución presupuestaria</p>
+            </div>
+          </ion-col>
         </ion-row>
-
-        <ion-row>          
+        <ion-row>
           <ion-col>
             <div class="cardTramites" (click)="atenciones()">
               <img src="assets/imgs/iconos/icon-atencion.png" alt=""/>

@@ -84,10 +84,20 @@
             <ion-icon slot="start" name="cash-outline"></ion-icon>
             <ion-label>Recaudaciones</ion-label>
           </ion-item>
+          <ion-item [class]="menuSelect=='proyectos'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/proyectos" detail="false">
+            <ion-icon slot="start" name="podium-outline"></ion-icon>
+            <ion-label>Proyectos</ion-label>
+          </ion-item>
           <ion-item [class]="menuSelect=='monitoreo'?'menuSelect':'menuDeselect'" detail="false"
             routerLink="/monitoreo" detail="false">
             <ion-icon slot="start" name="laptop-outline"></ion-icon>
             <ion-label>Monitoreo</ion-label>
+          </ion-item>
+          <ion-item [class]="menuSelect=='ejecucionpresupuestaria'?'menuSelect':'menuDeselect'" detail="false"
+            routerLink="/ejecucion-presupuestaria" detail="false">
+            <ion-icon slot="start" name="wallet-outline"></ion-icon>
+            <ion-label>Eje. presupuestaria</ion-label>
           </ion-item>
           <ion-item [class]="menuSelect=='atencion'?'menuSelect':'menuDeselect'" detail="false"
             routerLink="/atencion" detail="false">
