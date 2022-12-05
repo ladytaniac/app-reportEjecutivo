@@ -37,10 +37,10 @@ export class ModalLogueoPage implements OnInit{
     this.submitted= false;
   }
   ngOnInit() {
-    this.getUniqueDeviceID();
+    // this.getUniqueDeviceID();
   }
   ionViewDidEnter(){
-    this.getUniqueDeviceID();
+    // this.getUniqueDeviceID();
   }
   ingresar(form:NgForm){
     let URL = environment.loginURL;
@@ -106,17 +106,17 @@ export class ModalLogueoPage implements OnInit{
     const acceso = this.config.arrayIdAccess;
     if (this.platform.is('cordova')) {
       // ** sin unique device ***
-      // this.accessRE = false;
+      this.accessRE = false;      
 
       // ** con unique device **
-      const found = acceso.find(x=> x === this.UniqueDeviceID);
+      /* const found = acceso.find(x=> x === this.UniqueDeviceID);
       if(found == undefined) {
         this.accessRE = true;
         this.msjSrv.mostrarAlerta("Verificar","Su id: "+this.UniqueDeviceID + " no es permitido para esta aplicación.");
       } else {
         this.accessRE = false;
         this.msjSrv.mostrarAlerta("Confirmado",this.UniqueDeviceID);
-      }
+      } */
     } else {
       this.accessRE = false;
     }
