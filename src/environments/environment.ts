@@ -8,6 +8,7 @@ export const environment = {
   apiRepEjecutivo: "https://reporteejecutivo.cochabamba.bo/",
   apiFotoEmpleado: "https://appgamc.cochabamba.bo/transparencia/servicio/busqueda_fotoempleado.php",
   apiProyectos: "http://sandbox.cochabamba.bo/ejecutivo",
+  apiEjePresupuestaria: "https://reporteejecutivo.cochabamba.bo",
   apiAtlas: "https://multiserv.cochabamba.bo/api/v1/atlas",
   apiMonitoreoTendencia: "https://monitoreo.cochabamba.bo/",
   /*http://sandbox.cochabamba.bo/ejecutivo/obtain-selects

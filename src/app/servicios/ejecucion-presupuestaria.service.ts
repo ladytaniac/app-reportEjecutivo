@@ -12,6 +12,6 @@ export class EjecucionPresupuestariaService {
     private httpClient: HttpClient,
   ) { }
   public getEjecucionPresopuestaria() {
-    return this.httpClient.get(environment.apiProyectos+ '/obtain-ejecucion');
+    return this.httpClient.get(environment.apiEjePresupuestaria+ '/obtain-ejecucion');
   }
 }
