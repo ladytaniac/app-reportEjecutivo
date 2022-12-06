@@ -45,24 +45,39 @@ export class GastosPage implements OnInit {
           var auxPresupuesto= parseFloat(this.HtmlEncode(valor['presupuesto']));
           var auxCaldo_x_pagar= parseFloat(this.HtmlEncode(valor['saldo_x_pagar']));
           var auxSaldo_ppto = parseFloat(this.HtmlEncode(valor['saldo_ppto']));
-          
-          var porcentaje = ((auxDevengado*100)/auxPresupuesto).toFixed(2);
-          
-          const objSecretaria = {
-            devengado: valor['devengado'],
-            id_z_ejecucion_inversion: valor['id_z_ejecucion_inversion'],
-            pagado: valor['pagado'],
-            porcentaje: porcentaje,
-            presupuesto: valor['presupuesto'],
-            saldo_ppto: valor['saldo_ppto'],
-            saldo_x_pagar: valor['saldo_x_pagar'],
-            tipo_inversion: valor['tipo_inversion']
-          };
-
-          auxLista.push(objSecretaria);
-
+          if(valor['tipo_inversion'] != 'Total general'){
+            var porcentaje = ((auxDevengado*100)/auxPresupuesto).toFixed(2);
+            
+            const objSecretaria = {
+              devengado: valor['devengado'],
+              id_z_ejecucion_inversion: valor['id_z_ejecucion_inversion'],
+              pagado: valor['pagado'],
+              porcentaje: porcentaje,
+              presupuesto: valor['presupuesto'],
+              saldo_ppto: valor['saldo_ppto'],
+              saldo_x_pagar: valor['saldo_x_pagar'],
+              tipo_inversion: valor['tipo_inversion']
+            };
+  
+            auxLista.push(objSecretaria);
+          }
           if(valor['tipo_inversion'] == 'Total general') {
-            var newPorcentaje = parseFloat(porcentaje).toFixed(0);
+            
+            var porcentajeTotal = ((valor['devengado']*100)/valor['presupuesto']).toFixed(2);
+            
+            const objSecretaria = {
+              devengado: valor['devengado'],
+              id_z_ejecucion_inversion: valor['id_z_ejecucion_inversion'],
+              pagado: valor['pagado'],
+              porcentaje: porcentajeTotal,
+              presupuesto: valor['presupuesto'],
+              saldo_ppto: valor['saldo_ppto'],
+              saldo_x_pagar: valor['saldo_x_pagar'],
+              tipo_inversion: valor['tipo_inversion']
+            };
+            auxLista.push(objSecretaria);
+
+            var newPorcentaje = parseFloat(porcentajeTotal).toFixed(0);
             auxLabelEnd.push('Inversión');
             auxLabelEnd.push('Devengado');
             let restantePorcentaje = 100 - Number(newPorcentaje);
