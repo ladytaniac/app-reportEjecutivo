@@ -61,6 +61,11 @@
       {{ mensaje }}
     </div>
     <div [hidden]="!showInfo">
+      <ion-row>
+        <ion-col>
+          Total de registros: <ion-badge color="guindo" style="font-size: 16px;">{{ totalRegistros }}</ion-badge>
+        </ion-col>
+      </ion-row>
       <div class="buscador">
         <form [formGroup]="formsearch">
           <ion-row>

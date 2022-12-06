@@ -27,6 +27,7 @@ export class NuevoPersonalPage implements OnInit {
   funcionarios = [];
   filterData = [];
   seleccionado = 2;
+  totalRegistros = 0;
   mensaje;
   lstItem = [
     { valor: 3, name: 'Nombre' },
@@ -73,10 +74,10 @@ export class NuevoPersonalPage implements OnInit {
       formData.append('fechainicial', dateInicio);
       formData.append('fechafinal', dateFin);
       this.httpClient.post(API_URL, formData).subscribe((data) => {
-        console.log('datos=', data);
         if (data['status'] == true) {
           this.showInfo = true;
           this.funcionarios = data['response'];
+          this.totalRegistros = this.funcionarios.length;
           this.mensaje = '';
           this.setFilteredLocations();
         } else {
