@@ -22,6 +22,7 @@ import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import 'chartjs-plugin-zoom';
 import { NgChartsModule } from 'ng2-charts';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,7 +39,7 @@ import { NgChartsModule } from 'ng2-charts';
     NgChartsModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ConfigDatosApp, Geolocation, File, Network, Camera, FileTransfer,
-    LocalNotifications, FileOpener, UniqueDeviceID],
+    LocalNotifications, FileOpener, UniqueDeviceID, AndroidPermissions],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
