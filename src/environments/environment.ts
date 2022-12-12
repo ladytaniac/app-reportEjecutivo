@@ -11,6 +11,7 @@ export const environment = {
   apiEjePresupuestaria: "https://reporteejecutivo.cochabamba.bo",
   apiAtlas: "https://multiserv.cochabamba.bo/api/v1/atlas",
   apiMonitoreoTendencia: "https://monitoreo.cochabamba.bo/",
+  apiMultiser: "https://multiservdev.cochabamba.bo/api/v1/",
   /*http://sandbox.cochabamba.bo/ejecutivo/obtain-selects
   http://sandbox.cochabamba.bo/ejecutivo/obtain-graphics*/
 

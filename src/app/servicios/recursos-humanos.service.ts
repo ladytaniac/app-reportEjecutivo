@@ -21,4 +21,7 @@ export class RecursosHumanosService {
   public getVacantes() {
     return this.httpClient.get(environment.apiRRHH, this.httpOptions);
   }
+  public getFuncionarios(data:object):Observable<any> {
+    return this.httpClient.post(environment.apiMultiser+ 'rrhh/get-data-func',data);
+  }
 }

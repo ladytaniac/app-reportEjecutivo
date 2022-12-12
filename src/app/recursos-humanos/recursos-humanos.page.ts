@@ -28,6 +28,9 @@ export class RecursosHumanosPage implements OnInit {
   verNuevoPersonal() {
     this.router.navigateByUrl('/recursos-humanos/nuevo-personal');
   }
+  verPersonal() {
+    this.router.navigateByUrl('/recursos-humanos/personal');
+  }
 
   goBack() {
     this.router.navigate(['/servicios']);

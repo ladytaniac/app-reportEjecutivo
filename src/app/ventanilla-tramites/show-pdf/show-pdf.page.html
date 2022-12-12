@@ -19,6 +19,10 @@
 
 <ion-content [fullscreen]="false" class="ion-no-padding fondoStrongWhite">
   <div class="fondoContenedor">
+    <ion-button shape="round" color="verde" (click)="descargar()" class="btncolor" style="margin-top: 24px;">
+      <ion-icon name="download-outline"></ion-icon>
+      Descargar
+    </ion-button>
     <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(pathFile)" style="width:400px; height:500px;" frameborder="0"></iframe>
     <!-- 
     <pdf-viewer [src]="pdfSrc2"

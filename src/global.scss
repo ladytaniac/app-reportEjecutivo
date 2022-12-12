@@ -338,6 +338,12 @@ ion-alert {
         background-color: #06775c;
         border-radius: 0px 0px 7px 7px;
     }
+    .alert-head .alert-title {
+        color: white;
+    }
+    .alert-head .alert-sub-title {
+        color: #dddedf;
+    }
     .alert-message {
         margin-top: 10px;
     }

@@ -15,7 +15,11 @@ const routes: Routes = [
   {
     path: 'nuevo-personal',
     loadChildren: () => import('./nuevo-personal/nuevo-personal.module').then( m => m.NuevoPersonalPageModule)
+  },  {
+    path: 'personal',
+    loadChildren: () => import('./personal/personal.module').then( m => m.PersonalPageModule)
   }
+
 ];
 
 @NgModule({
