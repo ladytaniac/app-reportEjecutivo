@@ -47,26 +47,16 @@ export class ShowPdfPage implements OnInit {
   }
 
   async descargar() {
-    console.log('click=', this.actualpath);
-    console.log(this.actualpath);
+    let fecha = new Date();
+    let time = fecha.getTime();
     const fileTransfer: FileTransferObject = this.transfer.create();
     if (this.plt.is('cordova')) {
-      let url = encodeURI(this.actualpath); // path original
-  
-      // this.file.dataDirectory
-      console.log('dataDirectory funciona=', this.file.dataDirectory);
-      console.log('directorio=', this.config.getDirectorio());
-      console.log('externalRootDirectory=', this.file.externalRootDirectory); // hacer funcionar
-      console.log('externalDataDirectory=', this.file.externalDataDirectory);
-      console.log('externalCacheDirectory=', this.file.externalCacheDirectory);
-
       let path = await this.getDownloadPath();
       let uri = encodeURI(this.actualpath); 
-      let fullFileName = 'archivo.pdf';
+      let fullFileName = 'archivo_'+time+'.pdf';
      
       // descarga de archivos
       fileTransfer.download(uri, path + fullFileName, false).then((data) => {
-        console.log(data);
         console.log('download complete: ' + data.toURL());
         this.msjSrv.mostrarAlerta("Descarga exitosa", "Ubicación del archivo: " + data.toURL());
 
@@ -74,39 +64,6 @@ export class ShowPdfPage implements OnInit {
         this.msjSrv.ocultarCargando();
         console.log(err);
       })
-
-
-
-      /*
-      this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE)
-        .then((result) => {
-          if (result.hasPermission) {
-            console.log('Nuestro código');
-
-            let fileName: string = new Date().toLocaleDateString();
-            console.log('namefile=', fileName);
-            // descarga de archivos
-            fileTransfer.download(url, this.config.getDirectorio()+'file.pdf', true).then((data) => {
-              console.log(data);
-              console.log('download complete: ' + data.toURL());
-              // this.msjSrv.mostrarAlerta("Descarga exitosa","La hoja de rutas se descargó en la carpeta de descargas. Nombre: "+ 'file'+'.pdf');
-              this.msjSrv.mostrarAlerta("Descarga exitosa", "Ubicación del archivo: " + data.toURL());
-
-            }, (err) => {
-              this.msjSrv.ocultarCargando();
-              console.log(err);
-            })
-          } else {
-            this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE).then(result => {
-              if (result.hasPermission) {
-                console.log('hasPermission');
-              }
-            });
-          }
-        },
-        err => {
-            this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE);
-        });*/
     } else {
       // Descargamos modo escritorio
       this.actualpath.download(`pdf-info.pdf`);
