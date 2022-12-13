@@ -46,12 +46,13 @@ export class ShowPdfPage implements OnInit {
   ngOnInit() {
   }
 
-  descargar() {
+  async descargar() {
     console.log('click=', this.actualpath);
     console.log(this.actualpath);
     const fileTransfer: FileTransferObject = this.transfer.create();
     if (this.plt.is('cordova')) {
-      let url = encodeURI(this.actualpath);
+      let url = encodeURI(this.actualpath); // path original
+  
       // this.file.dataDirectory
       console.log('dataDirectory funciona=', this.file.dataDirectory);
       console.log('directorio=', this.config.getDirectorio());
@@ -59,8 +60,24 @@ export class ShowPdfPage implements OnInit {
       console.log('externalDataDirectory=', this.file.externalDataDirectory);
       console.log('externalCacheDirectory=', this.file.externalCacheDirectory);
 
-      //this.androidPermissions.hasPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE)
+      let path = await this.getDownloadPath();
+      let uri = encodeURI(this.actualpath); 
+      let fullFileName = 'archivo.pdf';
+     
+      // descarga de archivos
+      fileTransfer.download(uri, path + fullFileName, false).then((data) => {
+        console.log(data);
+        console.log('download complete: ' + data.toURL());
+        this.msjSrv.mostrarAlerta("Descarga exitosa", "Ubicación del archivo: " + data.toURL());
 
+      }, (err) => {
+        this.msjSrv.ocultarCargando();
+        console.log(err);
+      })
+
+
+
+      /*
       this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE)
         .then((result) => {
           if (result.hasPermission) {
@@ -68,12 +85,9 @@ export class ShowPdfPage implements OnInit {
 
             let fileName: string = new Date().toLocaleDateString();
             console.log('namefile=', fileName);
-
-
-
-
             // descarga de archivos
-            fileTransfer.download(url, this.file.dataDirectory + 'file.pdf', true).then((data) => {
+            fileTransfer.download(url, this.config.getDirectorio()+'file.pdf', true).then((data) => {
+              console.log(data);
               console.log('download complete: ' + data.toURL());
               // this.msjSrv.mostrarAlerta("Descarga exitosa","La hoja de rutas se descargó en la carpeta de descargas. Nombre: "+ 'file'+'.pdf');
               this.msjSrv.mostrarAlerta("Descarga exitosa", "Ubicación del archivo: " + data.toURL());
@@ -82,7 +96,6 @@ export class ShowPdfPage implements OnInit {
               this.msjSrv.ocultarCargando();
               console.log(err);
             })
-
           } else {
             this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE).then(result => {
               if (result.hasPermission) {
@@ -93,11 +106,29 @@ export class ShowPdfPage implements OnInit {
         },
         err => {
             this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE);
-        });
+        });*/
     } else {
       // Descargamos modo escritorio
       this.actualpath.download(`pdf-info.pdf`);
     }
+  }
+
+  async getDownloadPath() {
+    if (this.plt.is('ios')) {
+        return this.file.documentsDirectory;
+    }
+
+    // To be able to save files on Android, we first need to ask the user for permission. 
+    // We do not let the download proceed until they grant access
+    await this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE).then(
+          result => {
+              if (!result.hasPermission) {
+                  return this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE);
+              }
+          }
+    );
+  
+    return this.file.externalRootDirectory + "/Download/";
   }
 
   async closeModal() {
