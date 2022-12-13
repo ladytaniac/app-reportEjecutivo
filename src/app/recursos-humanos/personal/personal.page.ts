@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { environment } from '@env/environment';
 import { RecursosHumanosService } from 'src/app/servicios/recursos-humanos.service';
+import { ModalImagenPage } from './modal-imagen/modal-imagen.page';
 
 @Component({
   selector: 'app-personal',
@@ -31,7 +32,6 @@ export class PersonalPage implements OnInit {
   }
 
   ionViewDidEnter() {
-    // this.setFilteredLocations();
   }
 
   formulario() {
@@ -54,6 +54,15 @@ export class PersonalPage implements OnInit {
         }
       });
     }
+  }
+  async verImagen(ci) {
+    const modal = await this.modalCtrl.create({
+      component: ModalImagenPage,
+      componentProps: {
+        dni: ci
+      }
+    });
+    return await modal.present();
   }
   goBack() {
     this.router.navigate(['/recursos-humanos']);

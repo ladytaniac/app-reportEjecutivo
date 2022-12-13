@@ -32,14 +32,14 @@
       <form [formGroup]="form">
         <ion-row>
           <ion-col>
-            <ion-label position="stacked">Nombre</ion-label>
+            <ion-label position="stacked">Primer nombre</ion-label>
             <ion-input placeholder="Ingrese nombre" formControlName="nombre"></ion-input>
           </ion-col>
         </ion-row>
 
         <ion-row>
           <ion-col>
-            <ion-label position="stacked">Apellido </ion-label>
+            <ion-label position="stacked">Apellido paterno</ion-label>
             <ion-input placeholder="Ingrese apellido" formControlName="paterno"></ion-input>
           </ion-col>
         </ion-row>
@@ -93,17 +93,13 @@
                   <p>Departamento: {{ funcionario['codigo'] }}</p>
                 </ion-col>
               </ion-row>
-              <!--
               <ion-row>
-                <ion-col class="ion-no-padding" size="7">
-                  <p>Salario: <ion-badge color="guindo">{{ funcionario['haber_basico'] }} Bs.</ion-badge></p>
-                </ion-col>
-                <ion-col class="ion-no-padding ion-text-right" size="5">
-                  <ion-button fill="clear" (click)="verImagen(vacante['numdocumento'])" class="ion-no-padding">
+                <ion-col class="ion-no-padding ion-text-right">
+                  <ion-button fill="clear" (click)="verImagen(funcionario['numdocumento'])" class="ion-no-padding">
                     <ion-icon name="eye-outline"></ion-icon>
                   </ion-button>
                 </ion-col>
-              </ion-row> -->
+              </ion-row>
             </ion-card-content>
           </ion-card>
         </div>

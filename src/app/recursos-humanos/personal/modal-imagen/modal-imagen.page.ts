@@ -47,8 +47,12 @@ export class ModalImagenPage implements OnInit {
     formData.append('dato', this.numDocumento);
     this.httpClient.post(API_URL, formData).subscribe((data) => {
       if(data['status'] == true) {
-        this.showImg = true;
-        this.imagen = 'data:image/jpeg;base64,' + data['data'][0].foto;
+        if(data['data'][0].foto == '') {
+          this.showImg = false;
+        } else {
+          this.showImg = true;
+          this.imagen = 'data:image/jpeg;base64,' + data['data'][0].foto;
+        }
       } else {
         this.showImg = false;
       }

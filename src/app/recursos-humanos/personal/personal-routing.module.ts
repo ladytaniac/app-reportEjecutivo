@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: PersonalPage
+  },
+  {
+    path: 'modal-imagen',
+    loadChildren: () => import('./modal-imagen/modal-imagen.module').then( m => m.ModalImagenPageModule)
   }
 ];
 

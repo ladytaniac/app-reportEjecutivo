@@ -141,9 +141,7 @@ export class NuevoPersonalPage implements OnInit {
     }
   }
 
-
   async verImagen(ci) {
-    console.log(ci);
     const modal = await this.modalCtrl.create({
       component: ModalImagenPage,
       componentProps: {
