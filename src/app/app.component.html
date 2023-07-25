@@ -50,7 +50,7 @@
           </ion-item>
         </div>
         <!-- SECRETARIO -->
-        <div *ngIf="DNI === DNI_CONF2">
+        <div *ngIf="DNI === DNI_CONF4 || DNI === DNI_CONF5">
           <ion-item [class]="menuSelect=='ventanilla'?'menuSelect':'menuDeselect'" detail="false"
             routerLink="/ventanilla-tramites" detail="false">
             <ion-icon slot="start" name="layers-outline"></ion-icon>

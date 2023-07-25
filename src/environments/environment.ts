@@ -14,8 +14,4 @@ export const environment = {
   apiMultiser: "https://multiservdev.cochabamba.bo/api/v1/",
   /*http://sandbox.cochabamba.bo/ejecutivo/obtain-selects
   http://sandbox.cochabamba.bo/ejecutivo/obtain-graphics*/
-
-  
- 
-  apiCloseSession: "https://multiserv.cochabamba.bo/api/v1/auth/sem/logout-sem",
 };

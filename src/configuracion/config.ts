@@ -23,7 +23,9 @@ export class ConfigDatosApp{
     private readonly _DIRECTORIO_ANDROID= 'file:///storage/emulated/0/Download/';
     private readonly _DIRECTORIO_IOS= "file:///Documents/";
     private readonly _dni_alcalde = '2352217'; // Alcalde
-    private readonly _dni_secretario = '989806'; // hrico
+    // private readonly _dni_secretario = '989806'; // hrico
+    private readonly _dni_secre1='3819777';
+    private readonly _dni_secre2='6163818';
     private readonly _dni_otherfuncionario = '3797829'; // saconeta
     // private readonly _DIRECTORIO_IOS= cordova.file.documentsDirectory;
     constructor(){
@@ -51,8 +53,14 @@ export class ConfigDatosApp{
     public getDniAlcalde():string {
         return this._dni_alcalde;
     }
-    public getDniSecretario():string {
+    /*public getDniSecretario():string {
         return this._dni_secretario;
+    }*/
+    public getDniSecre1():string {
+        return this._dni_secre1;
+    }
+    public getDniSecre2():string {
+        return this._dni_secre2;
     }
     public getDniOtherPerson():string {
         return this._dni_otherfuncionario;

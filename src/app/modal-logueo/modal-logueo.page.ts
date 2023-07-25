@@ -58,6 +58,7 @@ export class ModalLogueoPage implements OnInit{
 
         this.msjSrv.mostrarCargando("Autenticando ...");
         this.httpClient.post(URL, formData).subscribe(data => {
+          console.log('data=', data);
           if(data['status'] == true) {
             this.config.session=data;
             this.config.session["nombre"]=data['response'].user.nombre_completo;

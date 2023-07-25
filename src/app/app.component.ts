@@ -17,8 +17,10 @@ export class AppComponent {
   tipoFuncionario;
   DNI;
   DNI_CONF1;
-  DNI_CONF2;
+  // DNI_CONF2;
   DNI_CONF3;
+  DNI_CONF4;
+  DNI_CONF5;
   private menuSelect: string;
   private iniLogin: boolean;
   private nombreCompleto: string;
@@ -38,8 +40,10 @@ export class AppComponent {
     this.iniLogin = false;
     this.avatar = 'assets/imgs/principales/alcaldecbba.jpg';
     this.DNI_CONF1 = this.config.getDniAlcalde();
-    this.DNI_CONF2 = this.config.getDniSecretario();
+    // this.DNI_CONF2 = this.config.getDniSecretario();
     this.DNI_CONF3 = this.config.getDniOtherPerson();
+    this.DNI_CONF4 = this.config.getDniSecre1();
+    this.DNI_CONF5 = this.config.getDniSecre2();
   }
   ngOnInit() {
     this.iniAppConfig();

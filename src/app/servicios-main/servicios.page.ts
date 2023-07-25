@@ -11,8 +11,10 @@ export class ServiciosPage implements OnInit {
   tipoFuncionario;
   DNI;
   DNI_CONF1;
-  DNI_CONF2;
+  // DNI_CONF2;
   DNI_CONF3;
+  DNI_CONF4;
+  DNI_CONF5;
 
   constructor(
     private router: Router,
@@ -23,8 +25,10 @@ export class ServiciosPage implements OnInit {
     window.dispatchEvent(new CustomEvent('menu'));
     this.DNI = this.config.session['dni'];
     this.DNI_CONF1 = this.config.getDniAlcalde();
-    this.DNI_CONF2 = this.config.getDniSecretario();
+    // this.DNI_CONF2 = this.config.getDniSecretario();
     this.DNI_CONF3 = this.config.getDniOtherPerson();
+    this.DNI_CONF4 = this.config.getDniSecre1();
+    this.DNI_CONF5 = this.config.getDniSecre2();
   }
 
   ngOnInit() {
